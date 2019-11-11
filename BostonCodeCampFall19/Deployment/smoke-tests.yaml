@@ -1,0 +1,61 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: Smoke Tests
+trigger:
+- none
+
+variables:
+  Agent.Source.Git.ShallowFetchDepth: 1
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: none
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    source: 'specific'
+    project: '27b6bef1-360a-4a5d-8cc7-dadb09d8eae1'
+    pipeline: 22
+    artifactName: 'k6'
+    runVersion: 'latest'
+    itemPattern: '!**/bin/*;!**/obj/*'
+    targetPath: '$(Pipeline.Workspace)/k6'
+  
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '11.x'
+
+- script: |
+    npm init -y
+  displayName: Initialize npm
+
+- script: |
+    npm install -g eslint
+  displayName: Install eslint
+
+- script: |
+    eslint $(Pipeline.Workspace)/k6/*.js
+  displayName: Lint K6 tests
+
+- script: |
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+    echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+    sudo apt-get update
+    sudo apt-get install k6
+  displayName: Install k6 tool
+  
+- script: |
+    k6 version
+  failOnStderr: true
+  displayName: Check if k6 is installed
+  
+- script: |
+    k6 run --insecure-skip-tls-verify --env API_HOSTNAME=$(ServerName) file://$(Pipeline.Workspace)/k6/1_6/1_6_Smoke_EventInsert.js
+  continueOnError: true
+  displayName: Run 1_6_Smoke_EventInsert.js
+

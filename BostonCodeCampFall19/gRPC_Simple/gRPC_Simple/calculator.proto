@@ -1,0 +1,21 @@
+﻿
+
+syntax = "proto3";
+
+package grpcdemo;
+
+// The greeting service definition.
+service AddDemo {
+  
+  rpc AddNumber (AddRequest) returns (AddReply) {}
+}
+
+
+message AddRequest {
+  int32 firstNumber = 1;
+  int32 secondNumber = 2;
+}
+
+message AddReply {
+  int32 total = 1;
+  }
