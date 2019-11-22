@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:2.2-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0-stretch-slim AS base
 WORKDIR /app
 
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0-stretch AS build
 WORKDIR /src
 COPY ["gRPC_Simple_Server/gRPC_Simple_Server.csproj", "gRPC_Simple_Server/"]
 COPY ["gRPC_Simple/gRPC_Simple.csproj", "gRPC_Simple/"]

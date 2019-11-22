@@ -10,7 +10,7 @@ namespace gRPC_Simple_client
         {
             var num1 = 1; var num2 = 3;
 
-            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            Channel channel = new Channel("127.0.0.1:8080", ChannelCredentials.Insecure);
             var addClient = new AddDemo.AddDemoClient(channel);
 
             Console.WriteLine($"Adding {num1.ToString()} and {num2.ToString()}");

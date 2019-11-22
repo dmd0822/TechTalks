@@ -1,0 +1,1 @@
+﻿k6 run -i 1 --insecure-skip-tls-verify --env API_HOSTNAME="localhost:5000" .\K6_GetPeople.js;

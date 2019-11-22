@@ -1,0 +1,2 @@
+ protoc --proto_path=. calculator.proto --js_out=import_style=commonjs,binary:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:. 
+https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  calculate-server:
+    build:
+      context: ./
+      dockerfile: ./gRPC_Simple_Server/Dockerfile
+    ports:
+      - "50051:50051"
+  envoy:
+    build:
+      context: ./
+      dockerfile: ./gRPC_Proxy/Dockerfile
+    ports:
+      - "8080:8080"
+    links:
+      - calculate-server
+  
