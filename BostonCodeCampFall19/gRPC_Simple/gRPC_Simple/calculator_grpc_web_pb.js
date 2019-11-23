@@ -146,5 +146,85 @@ proto.grpcdemo.AddDemoPromiseClient.prototype.addNumber =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.grpcdemo.SubstactRequst,
+ *   !proto.grpcdemo.AddReply>}
+ */
+const methodDescriptor_AddDemo_SubtractNumber = new grpc.web.MethodDescriptor(
+  '/grpcdemo.AddDemo/SubtractNumber',
+  grpc.web.MethodType.UNARY,
+  proto.grpcdemo.SubstactRequst,
+  proto.grpcdemo.AddReply,
+  /**
+   * @param {!proto.grpcdemo.SubstactRequst} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.grpcdemo.AddReply.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.grpcdemo.SubstactRequst,
+ *   !proto.grpcdemo.AddReply>}
+ */
+const methodInfo_AddDemo_SubtractNumber = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.grpcdemo.AddReply,
+  /**
+   * @param {!proto.grpcdemo.SubstactRequst} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.grpcdemo.AddReply.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.grpcdemo.SubstactRequst} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.grpcdemo.AddReply)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.grpcdemo.AddReply>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.grpcdemo.AddDemoClient.prototype.subtractNumber =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/grpcdemo.AddDemo/SubtractNumber',
+      request,
+      metadata || {},
+      methodDescriptor_AddDemo_SubtractNumber,
+      callback);
+};
+
+
+/**
+ * @param {!proto.grpcdemo.SubstactRequst} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.grpcdemo.AddReply>}
+ *     A native promise that resolves to the response
+ */
+proto.grpcdemo.AddDemoPromiseClient.prototype.subtractNumber =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/grpcdemo.AddDemo/SubtractNumber',
+      request,
+      metadata || {},
+      methodDescriptor_AddDemo_SubtractNumber);
+};
+
+
 module.exports = proto.grpcdemo;
 

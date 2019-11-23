@@ -8,6 +8,7 @@ package grpcdemo;
 service AddDemo {
   
   rpc AddNumber (AddRequest) returns (AddReply) {}
+  rpc SubtractNumber (.grpcdemo.SubstactRequst) returns (.grpcdemo.AddReply) {}
 }
 
 
@@ -19,3 +20,9 @@ message AddRequest {
 message AddReply {
   int32 total = 1;
   }
+
+
+ message SubstactRequst{
+ 	int32 firstNumber = 1;
+	int32 lastNumber = 2;
+ }

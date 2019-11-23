@@ -13,5 +13,10 @@ namespace gRPC_Simple_Server
         {
             return Task.FromResult(new AddReply { Total = request.FirstNumber + request.SecondNumber });
         }
+
+        public override Task<AddReply> SubtractNumber(SubstactRequst request, ServerCallContext context)
+        {
+            return Task.FromResult(new AddReply { Total = request.FirstNumber - request.LastNumber });
+        }
     }
 }
