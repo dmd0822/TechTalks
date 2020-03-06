@@ -1,5 +1,0 @@
-resource_group_name = "k8s-tf-rg"
-location = "eastus"
-billing_code_tag = "ABC123"
-key_vault_id = "/subscriptions/8223e52f-4a24-420d-87c3-d3c72b643c00/resourceGroups/terraform_rg/providers/Microsoft.KeyVault/vaults/terraformdmdkv"
-k8s_namespace = "azurevote"
