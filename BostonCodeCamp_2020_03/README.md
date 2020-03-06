@@ -15,6 +15,9 @@ This code is from a talk I gave at Boston Code Camp Mar 2020. It uses a demo app
 ## Commands ##
 
 terraform init 
+
 terraform plan -out out.plan
+
 terraform apply "out.plan"
+
 terraform destroy
